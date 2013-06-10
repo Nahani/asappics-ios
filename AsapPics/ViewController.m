@@ -84,7 +84,6 @@
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
-    NSLog(@"Ok");
 	[theTextField resignFirstResponder];
     if (theTextField == self.txtNom) {
         [txtPrenom becomeFirstResponder];
