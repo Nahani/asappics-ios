@@ -8,10 +8,12 @@
 
 #import "Welcome.h"
 #import "ViewController.h"
+#import "SDWebImageRootViewController.h"
 
 @implementation Welcome
 @synthesize txt_username;
 @synthesize txt_password;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,6 +30,12 @@
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBarHidden = true;
 }
 
 #pragma mark - View lifecycle
@@ -56,6 +64,10 @@
 
 - (IBAction)tryToConnect:(id)sender {
     NSLog(@"CONNEXION OK !");
+    self.navigationController.navigationBarHidden = false;
+    SDWebImageRootViewController *newController = [[SDWebImageRootViewController alloc] init];
+    [[self navigationController] pushViewController:newController animated:YES];
+    [newController release];
 }
 
 - (IBAction)move_to_view_subscription:(id)sender {

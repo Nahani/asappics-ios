@@ -81,6 +81,7 @@
 
 - (IBAction)inscription:(id)sender {
     NSLog(@"Inscription !");
+    
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)theTextField {
