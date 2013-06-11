@@ -9,11 +9,11 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController <UITextFieldDelegate>
-@property (weak, nonatomic) IBOutlet UITextField *txtNom;
-@property (weak, nonatomic) IBOutlet UITextField *txtPrenom;
-@property (weak, nonatomic) IBOutlet UITextField *txtLogin;
-@property (weak, nonatomic) IBOutlet UITextField *txtPassword;
-@property (weak, nonatomic) IBOutlet UITextField *txtMail;
+@property IBOutlet UITextField *txtNom;
+@property IBOutlet UITextField *txtPrenom;
+@property IBOutlet UITextField *txtLogin;
+@property IBOutlet UITextField *txtPassword;
+@property IBOutlet UITextField *txtMail;
 - (IBAction)retour:(id)sender;
 - (IBAction)inscription:(id)sender;
 
