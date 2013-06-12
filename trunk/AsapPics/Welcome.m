@@ -10,6 +10,7 @@
 #import "Inscription.h"
 #import "SDWebImageRootViewController.h"
 #import "Utils.h"
+#import "User.h"
 
 @implementation Welcome
 @synthesize txt_username;
@@ -76,6 +77,12 @@
             //appel au web service échoue
             if(false){
                 [Utils print_simple_popup:@"Connexion" msg:@"Mauvaise combinaison login/mot de passe"];
+                //    User* sharedSingleton = [User sharedInstance];
+                //    
+                //    [sharedSingleton setLogin:txt_username.text];
+                //    [sharedSingleton setIdUser:1];
+                //    
+                //    NSLog(@"%ld/%@",[sharedSingleton getIdUser], [sharedSingleton getLogin]);
             }
             else {
                 self.navigationController.navigationBarHidden = false;

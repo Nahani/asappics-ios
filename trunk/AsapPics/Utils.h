@@ -13,4 +13,5 @@
 @interface Utils : NSObject
 + (BOOL)connected;
 + (void) print_simple_popup:(NSString*)title msg:(NSString*)message;
++ (int) compute_random_number:(int)max;
 @end
