@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "KTThumbsViewController.h"
+#import "PhotoChooser.h"
+#import "Welcome.h"
+
 
 @class SDWebImageDataSource;
 
@@ -17,6 +20,10 @@
    SDWebImageDataSource *images_;
    UIActivityIndicatorView *activityIndicatorView_;
    UIWindow *window_;
+    UINavigationController *navController;
+    Welcome *welcomeView;
 }
+
+- (id)init: (Welcome *) welcome;
 
 @end

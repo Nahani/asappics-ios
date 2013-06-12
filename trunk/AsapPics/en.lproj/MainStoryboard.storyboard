@@ -180,11 +180,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" id="gG6-Ir-yQV">
-                                <rect key="frame" x="26" y="60" width="263" height="265"/>
+                                <rect key="frame" x="26" y="41" width="263" height="265"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="NV8-gU-chq">
-                                <rect key="frame" x="34" y="415" width="114" height="37"/>
+                                <rect key="frame" x="34" y="366" width="114" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Photos">
@@ -199,7 +199,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="xDS-Z2-nmG">
-                                <rect key="frame" x="183" y="415" width="101" height="37"/>
+                                <rect key="frame" x="183" y="366" width="101" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Upload">
@@ -213,30 +213,10 @@
                                     <action selector="getPhoto:" destination="Dks-sZ-MJV" eventType="touchUpInside" id="3KF-wc-VZm"/>
                                 </connections>
                             </button>
-                            <navigationBar contentMode="scaleToFill" barStyle="blackTranslucent" id="1Wx-55-5YA">
-                                <rect key="frame" x="-3" y="0.0" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="Image Upload" id="Zru-h7-kCw">
-                                        <barButtonItem key="backBarButtonItem" title="Cancel" id="J7p-Wg-GSD"/>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" barStyle="blackTranslucent" id="3Si-vN-brk">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <items>
-                                    <barButtonItem title="Annuler" id="UZj-ys-EFl">
-                                        <connections>
-                                            <action selector="cancelUpload:" destination="Dks-sZ-MJV" id="oxX-0F-ZPb"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="blackTranslucent" prompted="NO"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="choosePhotoBtn" destination="NV8-gU-chq" id="fds-8h-YX8"/>
                         <outlet property="imageView" destination="gG6-Ir-yQV" id="uWj-JZ-dVj"/>

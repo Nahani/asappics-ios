@@ -8,6 +8,9 @@
 
 #import "SDWebImageRootViewController.h"
 #import "SDWebImageDataSource.h"
+#import "PhotoChooser.h"
+#import "Welcome.h"
+
 
 @interface SDWebImageRootViewController ()
 - (void)showActivityIndicator;
@@ -23,14 +26,46 @@
    [super dealloc];
 }
 
+- (id)init: (Welcome *) welcome {
+    self = [super init];
+    if(self) {
+        welcomeView = welcome;
+        NSLog(@"Coucou");
+    }
+    
+    return self;
+}
+
 - (void)viewDidLoad 
 {
    [super viewDidLoad];
-  
-   self.title = @"SDWebImage Sample";
-   
+   self.title = @"Nom de l'album";
+    navController = [[UINavigationController alloc] init];
+    [window_ addSubview:navController.view];
+    // Override point for customization after application launch.
+    [window_ makeKeyAndVisible];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(print_Message)];
    images_ = [[SDWebImageDataSource alloc] init];
    [self setDataSource:images_];
+}
+
+-(void)print_Message {
+    NSLog(@"Eh up, someone just pressed the button!");
+    //PhotoChooser *monViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PhotoChooser"];
+    
+    
+    //PhotoChooser *detailVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PhotoChooser"];
+    
+    //PhotoChooser *newController = [[PhotoChooser alloc] init];
+    //[self.navigationController pushViewController:chooser animated:YES];
+    
+    PhotoChooser *monViewController = [welcomeView.storyboard instantiateViewControllerWithIdentifier:@"PhotoChooser"];
+    [welcomeView.navigationController pushViewController:monViewController animated:YES]; 
+    
+    
+//  [self presentViewController:detailVC animated:YES completion:nil];
+    //[chooser release];
 }
 
 /*
@@ -94,6 +129,17 @@
 {
    [[self activityIndicator] stopAnimating];
 }
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    navController = [[UINavigationController alloc] init];
+    [window_ addSubview:navController.view];
+    // Override point for customization after application launch.
+    [window_ makeKeyAndVisible];
+    NSLog(@"Test");
+    
+    return YES;
+}
+
 
 
 @end

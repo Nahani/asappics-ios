@@ -108,5 +108,10 @@
    [thumbView setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"photoDefault.png"]];
 }
 
+- (void)deleteImageAtIndex:(NSInteger)index {
+    NSLog(@"Delette final !");
+    
+}
+
 
 @end
