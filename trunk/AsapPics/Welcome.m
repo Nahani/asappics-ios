@@ -7,8 +7,9 @@
 //
 
 #import "Welcome.h"
-#import "ViewController.h"
+#import "Inscription.h"
 #import "SDWebImageRootViewController.h"
+#import "Utils.h"
 
 @implementation Welcome
 @synthesize txt_username;
@@ -45,6 +46,8 @@
     [super viewDidLoad];
     txt_username.delegate = self;
     txt_password.delegate = self;
+    self.view.backgroundColor=[UIColor colorWithPatternImage:[UIImage imageNamed:@"background.jpg"]];
+    
 }
 
 - (void)viewDidUnload
@@ -63,16 +66,30 @@
 }
 
 - (IBAction)tryToConnect:(id)sender {
-    NSLog(@"CONNEXION OK !");
-    self.navigationController.navigationBarHidden = false;
-    SDWebImageRootViewController *newController = [[SDWebImageRootViewController alloc] init];
-    [[self navigationController] pushViewController:newController animated:YES];
-    [newController release];
+    if (![Utils connected]){
+        [Utils print_simple_popup:@"Connexion" msg:@"Impossible de se connecter au réseau. Veuillez vérifier votre connexion internet"];
+    }
+    else {
+        if([txt_username.text length]==0 || [txt_username.text length]==0 ) {
+            [Utils print_simple_popup:@"Connexion" msg:@"Veuillez remplir tous les champs"];
+        } else {
+            //appel au web service échoue
+            if(true){
+                [Utils print_simple_popup:@"Connexion" msg:@"Mauvaise combinaison login/mot de passe"];
+            }
+            else {
+                self.navigationController.navigationBarHidden = false;
+                SDWebImageRootViewController *newController = [[SDWebImageRootViewController alloc] init];
+                [[self navigationController] pushViewController:newController animated:YES];
+                [newController release];
+            }
+        }
+    }
 }
 
 - (IBAction)move_to_view_subscription:(id)sender {
     NSLog(@"coucou");
-    ViewController *monViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Subscription"];
+    Inscription *monViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Subscription"];
     [self.navigationController pushViewController:monViewController animated:YES]; 
 }
 
