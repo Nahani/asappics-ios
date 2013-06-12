@@ -27,4 +27,9 @@
     [alert release];
 }
 
++ (int) compute_random_number:(int)borneMax_nonIncluse
+{
+    return (rand() % (borneMax_nonIncluse));
+}
+
 @end
