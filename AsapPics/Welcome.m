@@ -74,12 +74,12 @@
             [Utils print_simple_popup:@"Connexion" msg:@"Veuillez remplir tous les champs"];
         } else {
             //appel au web service échoue
-            if(true){
+            if(false){
                 [Utils print_simple_popup:@"Connexion" msg:@"Mauvaise combinaison login/mot de passe"];
             }
             else {
                 self.navigationController.navigationBarHidden = false;
-                SDWebImageRootViewController *newController = [[SDWebImageRootViewController alloc] init];
+                SDWebImageRootViewController *newController = [[SDWebImageRootViewController alloc] init:self];
                 [[self navigationController] pushViewController:newController animated:YES];
                 [newController release];
             }
