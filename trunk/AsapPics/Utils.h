@@ -12,6 +12,12 @@
 
 @interface Utils : NSObject
 + (BOOL)connected;
+
 + (void) print_simple_popup:(NSString*)title msg:(NSString*)message;
+
 + (int) compute_random_number:(int)max;
+
+//  UTILISER :     NSLog(@"%@",[Utils construct_URL:@"a",@"b",@"c", nil]);
++ (NSString *) construct_URL:(id) first, ...;
+
 @end

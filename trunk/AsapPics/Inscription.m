@@ -9,6 +9,9 @@
 #import "Inscription.h"
 #import "Welcome.h"
 #import "Utils.h"
+#import "WebServiceManager.h"
+#import "SDWebImageRootViewController.h"
+#import "User.h"
 
 @implementation Inscription
 @synthesize txtNom;
@@ -90,12 +93,20 @@
             [Utils print_simple_popup:@"Inscription" msg:@"Veuillez remplir tous les champs"];
         } else {
             //appel au web service échoue
-            if(true){
+            if(![WebServiceManager add_user:txtLogin.text withPass:txtPassword.text withFName:txtNom.text withMail:txtMail.text withLName:txtPrenom.text ]){
                 [Utils print_simple_popup:@"Inscription" msg:@"L'inscription a échouée : login déjà existant"];
             }
             else {
-                //Welcome *monViewController = [self.storyboard instantiateViewControllerWithIdentifier:@""];
-                //[self.navigationController pushViewController:monViewController animated:YES]; 
+                User* sharedSingleton = [User sharedInstance];
+                
+                [sharedSingleton setLogin:txtLogin.text];
+                [sharedSingleton setIdUser:[WebServiceManager get_user_id:txtLogin.text]];
+                
+                NSLog(@"%ld/%@",[sharedSingleton getIdUser], [sharedSingleton getLogin]);
+                self.navigationController.navigationBarHidden = false;
+                SDWebImageRootViewController *newController = [[SDWebImageRootViewController alloc] init:self];
+                [[self navigationController] pushViewController:newController animated:YES];
+                [newController release];
             }
         }
     }

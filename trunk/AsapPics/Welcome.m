@@ -11,6 +11,7 @@
 #import "SDWebImageRootViewController.h"
 #import "Utils.h"
 #import "User.h"
+#import "WebServiceManager.h"
 
 @implementation Welcome
 @synthesize txt_username;
@@ -75,16 +76,16 @@
             [Utils print_simple_popup:@"Connexion" msg:@"Veuillez remplir tous les champs"];
         } else {
             //appel au web service échoue
-            if(false){
+            if(![WebServiceManager check_password:txt_username.text withPass:txt_password.text]){
                 [Utils print_simple_popup:@"Connexion" msg:@"Mauvaise combinaison login/mot de passe"];
-                //    User* sharedSingleton = [User sharedInstance];
-                //    
-                //    [sharedSingleton setLogin:txt_username.text];
-                //    [sharedSingleton setIdUser:1];
-                //    
-                //    NSLog(@"%ld/%@",[sharedSingleton getIdUser], [sharedSingleton getLogin]);
             }
             else {
+                User* sharedSingleton = [User sharedInstance];
+                
+                [sharedSingleton setLogin:txt_username.text];
+                [sharedSingleton setIdUser:[WebServiceManager get_user_id:txt_username.text]];
+                
+                NSLog(@"%ld/%@",[sharedSingleton getIdUser], [sharedSingleton getLogin]);
                 self.navigationController.navigationBarHidden = false;
                 SDWebImageRootViewController *newController = [[SDWebImageRootViewController alloc] init:self];
                 [[self navigationController] pushViewController:newController animated:YES];

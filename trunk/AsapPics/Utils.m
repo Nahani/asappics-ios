@@ -32,4 +32,23 @@
     return (rand() % (borneMax_nonIncluse));
 }
 
++ (NSString *) construct_URL:(id) first, ...
+{
+    NSString * result = @"";
+    id eachArg;
+    va_list alist;
+    if(first)
+    {
+        result = [result stringByAppendingString:first];
+        va_start(alist, first);
+        while ((eachArg = va_arg(alist, id))){ 
+            NSString *separator = @"/";
+            result = [result stringByAppendingString:separator];
+            result = [result stringByAppendingString:eachArg];
+        }
+        va_end(alist);
+    }
+    return result;
+}
+
 @end
