@@ -11,7 +11,10 @@
 
 
 @interface SDWebImageDataSource : NSObject <KTPhotoBrowserDataSource> {
-   NSArray *images_;
+    NSArray *images;
+    long idAlbum;
 }
+
+- (id)init : (long) album;
 
 @end

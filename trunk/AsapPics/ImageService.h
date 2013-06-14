@@ -14,6 +14,8 @@
 
 +(UIImage*) getThumb:(int)idImage withAlbum:(int)idAlbum;
 
++(NSArray*) get_images_id_from_album:(int)idAlbum;
+
 +(void) add:(int)idAlbum name:(NSString*)img_name stream:(NSData*)bytes;
 
 +(NSData *)makeMultipartDataWithBoundary:(NSString *) boundary 

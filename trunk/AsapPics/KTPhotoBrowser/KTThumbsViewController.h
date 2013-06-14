@@ -9,20 +9,30 @@
 #import <UIKit/UIKit.h>
 #import "KTPhotoBrowserDataSource.h"
 #import "KTThumbsView.h"
+#import "Welcome.h"
 
 @class KTThumbsView;
 
 @interface KTThumbsViewController : UIViewController <KTThumbsViewDataSource>
 {
 @private
-   id <KTPhotoBrowserDataSource> dataSource_;
-   KTThumbsView *scrollView_;
-   BOOL viewDidAppearOnce_;
-   BOOL navbarWasTranslucent_;
+    id <KTPhotoBrowserDataSource> dataSource_;
+    KTThumbsView *scrollView_;
+    BOOL viewDidAppearOnce_;
+    BOOL navbarWasTranslucent_;
+    BOOL isAlbum;
+@protected
+    Welcome *welcomeView;
 }
+
 
 @property (nonatomic, retain) id <KTPhotoBrowserDataSource> dataSource;
 
+-(id)init:(BOOL) album : (Welcome *) welcome;
+
+-(BOOL)isAlbum;
+
+-(void) deleteAtIndex:(NSInteger) idDel;
 /**
  * Re-displays the thumbnail images.
  */

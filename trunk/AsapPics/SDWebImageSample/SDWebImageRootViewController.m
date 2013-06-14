@@ -10,6 +10,7 @@
 #import "SDWebImageDataSource.h"
 #import "PhotoChooser.h"
 #import "Welcome.h"
+#import "WebServiceManager.h"
 
 
 @interface SDWebImageRootViewController ()
@@ -26,11 +27,10 @@
    [super dealloc];
 }
 
-- (id)init: (Welcome *) welcome {
-    self = [super init];
+- (id)init: (Welcome *) welcome : (long) album {
+    self = [super init:false : welcome];
     if(self) {
-        welcomeView = welcome;
-        NSLog(@"Coucou");
+        idAlbum = album;
     }
     
     return self;
@@ -39,33 +39,20 @@
 - (void)viewDidLoad 
 {
    [super viewDidLoad];
-   self.title = @"Nom de l'album";
-    navController = [[UINavigationController alloc] init];
-    [window_ addSubview:navController.view];
+    self.title = [WebServiceManager get_album_name:idAlbum];
     // Override point for customization after application launch.
-    [window_ makeKeyAndVisible];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(print_Message)];
-   images_ = [[SDWebImageDataSource alloc] init];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(addImage)];
+    //-------------------------------------------------------------
+    //Faire un constructeur ou l'on passe l'id de l'idAlbum
+    //Si pas de param alors c'est la vue des album
+   images_ = [[SDWebImageDataSource alloc] init:idAlbum];
    [self setDataSource:images_];
 }
 
--(void)print_Message {
-    NSLog(@"Eh up, someone just pressed the button!");
-    //PhotoChooser *monViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"PhotoChooser"];
-    
-    
-    //PhotoChooser *detailVC = [self.storyboard instantiateViewControllerWithIdentifier:@"PhotoChooser"];
-    
-    //PhotoChooser *newController = [[PhotoChooser alloc] init];
-    //[self.navigationController pushViewController:chooser animated:YES];
-    
+-(void)addImage {
     PhotoChooser *monViewController = [welcomeView.storyboard instantiateViewControllerWithIdentifier:@"PhotoChooser"];
     [welcomeView.navigationController pushViewController:monViewController animated:YES]; 
-    
-    
-//  [self presentViewController:detailVC animated:YES completion:nil];
-    //[chooser release];
 }
 
 /*
@@ -131,14 +118,26 @@
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    navController = [[UINavigationController alloc] init];
-    [window_ addSubview:navController.view];
     // Override point for customization after application launch.
-    [window_ makeKeyAndVisible];
     NSLog(@"Test");
     
     return YES;
 }
+
+-(void) deleteAtIndex:(NSInteger) idDel {
+    indexImage = idDel;
+    UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Supprimer une photo" message:@"Voulez-vous vraiment supprimer la photo ?" delegate:self cancelButtonTitle:@"Non" otherButtonTitles:@"Oui", nil];
+    [alert show];
+    
+}
+
+- (void)alertView:(UIAlertView *)alert clickedButtonAtIndex:(NSInteger)buttonIndex {
+        if(buttonIndex > 0) {
+            [images_ deleteImageAtIndex:indexImage];
+            [self viewDidLoad];
+        }
+}
+
 
 
 

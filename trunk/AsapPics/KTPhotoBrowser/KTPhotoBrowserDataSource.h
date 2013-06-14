@@ -14,6 +14,7 @@
 @protocol KTPhotoBrowserDataSource <NSObject>
 @required
 - (NSInteger)numberOfPhotos;
+- (NSInteger) getAlbumIdAtIndex : (NSInteger) index;
 
 @optional
 

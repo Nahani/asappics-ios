@@ -20,6 +20,8 @@
 
 +(UIImage*) getThumb:(int)idImage withAlbum:(int)idAlbum;
 
++(NSArray*) get_images_id_from_album:(int)idAlbum;
+
 
 +(NSString*) get_album_name:(int)idUser;
 
@@ -43,4 +45,11 @@
 +(BOOL) check_password:(NSString*)login withPass:(NSString *)pwd;
 
 +(void) add_image:(int)idAlbum name:(NSString*)img_name stream:(NSData*)bytes;
+
++(NSArray *) get_Images_from_album:(int)idAlbum;
+
++(NSArray*) get_Albums_from_user:(int) idUser;
+
++(int) get_image_id_random_from_album:(int) idAlbum;
+
 @end

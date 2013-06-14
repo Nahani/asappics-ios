@@ -12,9 +12,13 @@
 
 @interface KTThumbView : UIButton 
 {
+
 @private
    KTThumbsViewController *controller_;
+    
+
 }
+
 
 @property (nonatomic, assign) KTThumbsViewController *controller;
 

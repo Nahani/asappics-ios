@@ -10,6 +10,10 @@
 #import "ImageService.h"
 #import "AlbumService.h"
 #import "UserService.h"
+#import "Image.h"
+#import "Album.h"
+#import "Utils.h"
+
 
 @implementation WebServiceManager
 
@@ -97,6 +101,41 @@
 {
     [ImageService add:idAlbum name:img_name stream:bytes];
 }
+
++(NSArray*) get_images_id_from_album:(int)idAlbum 
+{
+    return [ImageService get_images_id_from_album:idAlbum];
+}
+
++(NSArray *) get_Images_from_album:(int)idAlbum {
+    
+    NSArray *imagesId = [self get_images_id_from_album:idAlbum];
+    NSMutableArray *images = [[NSMutableArray alloc] init];
+    
+    for(NSString *idImage in imagesId){
+        [images addObject:[[Image alloc] init:(long)[idImage intValue] : idAlbum :[self get_image_name:(long)[idImage intValue] withAlbum:idAlbum]]];
+    }
+    
+    return images;
+    
+}
+
++(NSArray*) get_Albums_from_user:(int) idUser {
+    NSArray *albumsId = [self get_albums_id_from_user:idUser];
+    NSMutableArray *albums = [[NSMutableArray alloc] init];
+    
+    for(NSString *idAlbum in albumsId)
+        [albums addObject:[[Album alloc] init:(long)[idAlbum intValue] :[self get_image_id_random_from_album:[idAlbum intValue]]]];
+    
+    return albums;
+}
+
++(int) get_image_id_random_from_album:(int) idAlbum {
+     NSArray *imagesId = [self get_images_id_from_album:idAlbum];
+    if([imagesId count] == 0) return 0;
+    return [[imagesId objectAtIndex:[Utils compute_random_number:[imagesId count]]] intValue];
+}
+                        
 
 
 @end
