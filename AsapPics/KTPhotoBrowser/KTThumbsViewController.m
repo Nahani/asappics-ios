@@ -10,6 +10,9 @@
 #import "KTThumbsView.h"
 #import "KTThumbView.h"
 #import "KTPhotoScrollViewController.h"
+#import "SDWebImageRootViewController.h"
+#import "AlbumsDataSource.h"
+
 
 
 @interface KTThumbsViewController (Private)
@@ -24,6 +27,20 @@
    [scrollView_ release], scrollView_ = nil;
    
    [super dealloc];
+}
+
+-(id)init:(BOOL) album : (Welcome *) welcome {
+    self = [super init];
+    if(self) {
+        isAlbum = album;
+        welcomeView = welcome;
+    }
+    
+    return self;
+}
+
+-(BOOL)isAlbum{
+    return isAlbum;
 }
 
 - (void)loadView {
@@ -114,12 +131,30 @@
 }
 
 - (void)didSelectThumbAtIndex:(NSUInteger)index {
+    NSLog(@"Passe ici !");
+    //Cas d'une image :
+    if(!isAlbum) {
    KTPhotoScrollViewController *newController = [[KTPhotoScrollViewController alloc] 
                                                         initWithDataSource:dataSource_ 
                                                   andStartWithPhotoAtIndex:index];
   
    [[self navigationController] pushViewController:newController animated:YES];
    [newController release];
+    }
+    //Cas d'un album
+    //Passer à la vue de l'album
+    //Appeler la méthode datasource_ getAlbumAtIndex qui retoure soit un id soit qui fait lui même le changement de vue
+    else {
+        NSLog(@"Passe ici !");
+        //Récupérer l'id de l'abum correspondant à l'album de l'index
+        //Passer en arguments l'id de l'album
+        
+        SDWebImageRootViewController *monViewController = [[SDWebImageRootViewController alloc] init:welcomeView :[dataSource_ getAlbumIdAtIndex:index]];
+        [welcomeView.navigationController pushViewController:monViewController animated:YES]; 
+    }
+    
+    
+    
 }
 
 

@@ -31,6 +31,8 @@
 {
    self = [super initWithFrame:frame];
    if (self) {
+       
+       
       [self setDelegate:self];
       [self setMaximumZoomScale:5.0];
       [self setShowsHorizontalScrollIndicator:NO];

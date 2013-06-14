@@ -17,13 +17,12 @@
 @interface SDWebImageRootViewController : KTThumbsViewController 
 {
 @private
-   SDWebImageDataSource *images_;
-   UIActivityIndicatorView *activityIndicatorView_;
-   UIWindow *window_;
-    UINavigationController *navController;
-    Welcome *welcomeView;
+    SDWebImageDataSource *images_;
+    UIActivityIndicatorView *activityIndicatorView_;
+    long idAlbum;
+    NSInteger indexImage;
 }
 
-- (id)init: (Welcome *) welcome;
+- (id)init: (Welcome *) welcome : (long) album;
 
 @end

@@ -8,10 +8,11 @@
 
 #import "Welcome.h"
 #import "Inscription.h"
-#import "SDWebImageRootViewController.h"
+#import "AlbumsViewController.h"
 #import "Utils.h"
 #import "User.h"
 #import "WebServiceManager.h"
+#import "Image.h"
 
 @implementation Welcome
 @synthesize txt_username;
@@ -87,7 +88,7 @@
                 
                 NSLog(@"%ld/%@",[sharedSingleton getIdUser], [sharedSingleton getLogin]);
                 self.navigationController.navigationBarHidden = false;
-                SDWebImageRootViewController *newController = [[SDWebImageRootViewController alloc] init:self];
+                AlbumsViewController *newController = [[AlbumsViewController alloc] init:self];
                 [[self navigationController] pushViewController:newController animated:YES];
                 [newController release];
             }
@@ -96,6 +97,12 @@
 }
 
 - (IBAction)move_to_view_subscription:(id)sender {
+    NSArray *images = [WebServiceManager get_Images_from_album:1];
+    NSLog(@"Id RANDOM : %d", [WebServiceManager get_image_id_random_from_album:1]);
+    NSLog(@"Nombre d'album: %d", [[WebServiceManager get_Albums_from_user:5] count]);
+    for(Image *img in images){
+        NSLog(@"Name: %@, id: %ld, idAlbum: %ld", [img getName], [img getIdImage], [img getIdAlbum]); 
+    }
     NSLog(@"coucou");
     Inscription *monViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Subscription"];
     [self.navigationController pushViewController:monViewController animated:YES]; 

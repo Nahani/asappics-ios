@@ -14,7 +14,7 @@
 @implementation KTThumbView
 
 @synthesize controller = controller_;
-
+static int nbLongTouch = 0;
 - (void)dealloc 
 {
    [super dealloc];
@@ -24,9 +24,16 @@
 {
    if (self = [super initWithFrame:frame]) {
 
+       UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] 
+                                             initWithTarget:self action:@selector(handleLongPress:)];
+       lpgr.minimumPressDuration = 2.0; //seconds
+       lpgr.delegate = self;
+
       [self addTarget:self
                action:@selector(didTouch:)
      forControlEvents:UIControlEventTouchUpInside];
+       [self addGestureRecognizer:lpgr];
+       [lpgr release];
       
       [self setClipsToBounds:YES];
 
@@ -39,9 +46,40 @@
 
 - (void)didTouch:(id)sender 
 {
-   if (controller_) {
+    //#####################
+    //@@@@@@@@@@@@@@@@
+    //Ici pareil différencier le touch sur un album et le touch sur une image
+    //If dans un album
       [controller_ didSelectThumbAtIndex:[self tag]];
-   }
+    
+//If dans galerie d'album : Passer à la vue des images
+    
+}
+
+- (void)didTouchRepeat:(id)sender 
+{
+    //Supprimer la photo ou l'album
+    // Soit ajouter un attribut dans le KTThumbsViewController pour savoir si on est dans le cas d'un album ou d'une image
+    //Soit faire un instance of
+    /*if (controller_) {
+        [controller_ didSelectThumbAtIndex:[self tag]];
+    }*/
+    
+    NSLog(@"Delete with Touch Repeat");
+}
+
+-(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
+{ 
+    if(nbLongTouch == 0){
+        nbLongTouch++;
+        [controller_ deleteAtIndex:self.tag];
+    }
+    else if (nbLongTouch == 1){
+        nbLongTouch = 0;
+    }
+    else {
+        nbLongTouch++;
+    }
 }
 
 - (void)setThumbImage:(UIImage *)newImage 

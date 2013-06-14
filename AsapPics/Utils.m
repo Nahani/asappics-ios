@@ -29,6 +29,7 @@
 
 + (int) compute_random_number:(int)borneMax_nonIncluse
 {
+    if(borneMax_nonIncluse == 0) return 0;
     return (rand() % (borneMax_nonIncluse));
 }
 

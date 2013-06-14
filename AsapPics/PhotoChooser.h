@@ -16,9 +16,13 @@
 
 @property (nonatomic, retain) IBOutlet UIImageView * imageView;
 @property (nonatomic, retain) IBOutlet UIButton * choosePhotoBtn;
-@property (nonatomic, retain) IBOutlet UIButton * takePhotoBtn;
+@property (nonatomic, retain) IBOutlet UIButton * uploadPhotoBtn;
+@property (retain, nonatomic) IBOutlet UILabel *label;
+@property (retain, nonatomic) IBOutlet UILabel *imageName;
+@property (retain, nonatomic) IBOutlet UIButton *editBtn;
 
 -(IBAction) getPhoto:(id) sender;
-- (IBAction)cancelUpload:(id)sender;
+- (IBAction)uploadPhoto:(id)sender;
+- (IBAction)editName:(id)sender;
 
 @end
