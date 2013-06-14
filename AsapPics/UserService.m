@@ -7,6 +7,7 @@
 //
 
 #import "UserService.h"
+#import "Utils.h"
 
 @implementation UserService
 
@@ -25,11 +26,10 @@ const NSString* RESPONSE_TAG_GET_USER_LEVEL =@"Get_User_LevelResult";
 + (int) get_user_id:(NSString*)idUser
 {
     NSString *result = @"";
-    NSString *idi = [NSString stringWithFormat:@"/%@",idUser];
+    NSString *idi = [NSString stringWithFormat:@"%@",idUser];
     NSString* retour;
     
-    result = [result stringByAppendingString:URL_GET_USER_ID ];
-    result = [result stringByAppendingString: idi];
+    result = [Utils construct_URL:URL_GET_USER_ID,idi,nil];
     NSLog(@"%@",result);
     
     NSData* data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:result]];
@@ -42,18 +42,17 @@ const NSString* RESPONSE_TAG_GET_USER_LEVEL =@"Get_User_LevelResult";
     
     retour = [json objectForKey:(RESPONSE_GET_USER_ID)];
     int final = [retour intValue];
-    
+    NSLog(@"reponse : %d",final);
     return final;
 }
 
 + (BOOL) get_user_level:(NSString*)idUser
 {
     NSString *result = @"";
-    NSString *idi = [NSString stringWithFormat:@"/%@",idUser];
+    NSString *idi = [NSString stringWithFormat:@"%@",idUser];
     NSString* retour;
     
-    result = [result stringByAppendingString:URL_GET_USER_LEVEL ];
-    result = [result stringByAppendingString: idi];
+    result = [Utils construct_URL:URL_GET_USER_LEVEL,idi,nil];
     NSLog(@"%@",result);
     
     NSData* data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:result]];
@@ -66,20 +65,18 @@ const NSString* RESPONSE_TAG_GET_USER_LEVEL =@"Get_User_LevelResult";
     
     retour = [json objectForKey:(RESPONSE_TAG_GET_USER_LEVEL)];
     BOOL final = [retour boolValue];
-    
+    NSLog(@"reponse : %d",final);
     return final;
 }
 
 + (BOOL) check_password:(NSString*)idUser withPass:(NSString*)pwd
 {
     NSString *result = @"";
-    NSString *idi = [NSString stringWithFormat:@"/%@",idUser];
-    NSString *pass = [NSString stringWithFormat:@"/%@",pwd];
+    NSString *idi = [NSString stringWithFormat:@"%@",idUser];
+    NSString *pass = [NSString stringWithFormat:@"%@",pwd];
     NSString* retour;
     
-    result = [result stringByAppendingString:URL_CHECK_PASSWORD ];
-    result = [result stringByAppendingString: idi];
-    result = [result stringByAppendingString: pass];
+    result = [Utils construct_URL:URL_CHECK_PASSWORD,idi,pass,nil];
     NSLog(@"%@",result);
     
     NSData* data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:result]];
@@ -92,26 +89,21 @@ const NSString* RESPONSE_TAG_GET_USER_LEVEL =@"Get_User_LevelResult";
     
     retour = [json objectForKey:(RESPONSE_TAG_CHECK_PASSWORD)];
     BOOL final = [retour boolValue];
-    
+    NSLog(@"reponse : %d",final);
     return final;
 }
 
 + (BOOL) add:(NSString*)idUser withPass:(NSString*)pwd withFName:(NSString*)fname withMail:(NSString*)mail withLName:(NSString*)lname
 {
     NSString *result = @"";
-    NSString *idi = [NSString stringWithFormat:@"/%@",idUser];
-    NSString *pass = [NSString stringWithFormat:@"/%@",pwd];
-    NSString *first_name = [NSString stringWithFormat:@"/%@",fname];
-    NSString *last_name = [NSString stringWithFormat:@"/%@",lname];
-    NSString *email = [NSString stringWithFormat:@"/%@",mail];
+    NSString *idi = [NSString stringWithFormat:@"%@",idUser];
+    NSString *pass = [NSString stringWithFormat:@"%@",pwd];
+    NSString *first_name = [NSString stringWithFormat:@"%@",fname];
+    NSString *last_name = [NSString stringWithFormat:@"%@",lname];
+    NSString *email = [NSString stringWithFormat:@"%@",mail];
     NSString* retour;
     
-    result = [result stringByAppendingString:URL_ADD_USER ];
-    result = [result stringByAppendingString: first_name];
-    result = [result stringByAppendingString: last_name];
-    result = [result stringByAppendingString: idi];
-    result = [result stringByAppendingString: email];
-    result = [result stringByAppendingString: pass];
+    result = [Utils construct_URL:URL_ADD_USER,first_name,last_name,idi,email,pass,nil];
     NSLog(@"%@",result);
     
     NSData* data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:result]];
@@ -124,7 +116,7 @@ const NSString* RESPONSE_TAG_GET_USER_LEVEL =@"Get_User_LevelResult";
     
     retour = [json objectForKey:(RESPONSE_TAG_ADD_USER)];
     BOOL final = [retour boolValue];
-    
+    NSLog(@"reponse : %d",final);
     return final;
     
 }
@@ -132,11 +124,10 @@ const NSString* RESPONSE_TAG_GET_USER_LEVEL =@"Get_User_LevelResult";
 + (BOOL) delete:(NSString*)idUser
 {
     NSString *result = @"";
-    NSString *idi = [NSString stringWithFormat:@"/%@",idUser];
+    NSString *idi = [NSString stringWithFormat:@"%@",idUser];
     NSString* retour;
     
-    result = [result stringByAppendingString:URL_DELETE_USER ];
-    result = [result stringByAppendingString: idi];
+    result = [Utils construct_URL:URL_DELETE_USER,idi,nil];
     NSLog(@"%@",result);
     
     NSData* data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:result]];
@@ -149,13 +140,8 @@ const NSString* RESPONSE_TAG_GET_USER_LEVEL =@"Get_User_LevelResult";
     
     retour = [json objectForKey:(RESPONSE_TAG_DELETE_USER)];
     BOOL final = [retour boolValue];
-    
+    NSLog(@"reponse : %d",final);
     return final;
 }
-
-
-
-
-
 
 @end
