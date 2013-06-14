@@ -10,6 +10,7 @@
 #define SERVICE_NAME = ImageService.svc/
 
 #import "ImageService.h"
+#import "Utils.h"
 
 @implementation ImageService
 
@@ -29,12 +30,10 @@ const NSString *RESPONSE_TAG_GET_IMAGE_ID_FROM_ALBUM = @"Get_Image_ID_From_Album
 + (NSString *) get_image_name:(int)idImage id_album:(int)idAlbum
 {
     NSString *result = @"";
-    NSString *ida = [NSString stringWithFormat:@"/%d",idAlbum];
-    NSString *idi = [NSString stringWithFormat:@"/%d",idImage];
+    NSString *ida = [NSString stringWithFormat:@"%d",idAlbum];
+    NSString *idi = [NSString stringWithFormat:@"%d",idImage];
     
-    result = [result stringByAppendingString:URL_GET_IMAGE_NAME ];
-    result = [result stringByAppendingString: idi];
-    result = [result stringByAppendingString: ida];
+    result = [Utils construct_URL:URL_GET_IMAGE_NAME,idi,ida,nil];
     NSLog(@"%@",result);
     
     NSData* data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:result]];
@@ -44,7 +43,7 @@ const NSString *RESPONSE_TAG_GET_IMAGE_ID_FROM_ALBUM = @"Get_Image_ID_From_Album
                           JSONObjectWithData:data
                           options:kNilOptions 
                           error:&error];
-    
+    NSLog(@"reponse : %@",[json objectForKey:(RESPONSE_TAG_GET_IMAGE_NAME)]);
     return [json objectForKey:(RESPONSE_TAG_GET_IMAGE_NAME)];
 }
 
@@ -52,11 +51,9 @@ const NSString *RESPONSE_TAG_GET_IMAGE_ID_FROM_ALBUM = @"Get_Image_ID_From_Album
 {
     NSString *result = @"";
     NSString *retour = @"";
-    NSString *ida = [NSString stringWithFormat:@"/%d/",idAlbum];
+    NSString *ida = [NSString stringWithFormat:@"%d",idAlbum];
     
-    result = [result stringByAppendingString:URL_GET_IMAGE_ID ];
-    result = [result stringByAppendingString: ida];
-    result = [result stringByAppendingString: name];
+    result = [Utils construct_URL:URL_GET_IMAGE_ID,ida,name,nil];
     NSLog(@"%@",result);
     
     NSData* data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:result]];
@@ -68,19 +65,17 @@ const NSString *RESPONSE_TAG_GET_IMAGE_ID_FROM_ALBUM = @"Get_Image_ID_From_Album
                           error:&error];
     retour = [json objectForKey:(RESPONSE_TAG_GET_IMAGE_ID)];
     int final = [retour intValue];
-    
+    NSLog(@"reponse : %d",final);
     return final;
 }
 
 +(BOOL) delete:(int)idImage withAlbum:(int)idAlbum
 {
     NSString *result = @"";
-    NSString *ida = [NSString stringWithFormat:@"/%d",idAlbum];
-    NSString *idi = [NSString stringWithFormat:@"/%d",idImage];
+    NSString *ida = [NSString stringWithFormat:@"%d",idAlbum];
+    NSString *idi = [NSString stringWithFormat:@"%d",idImage];
     
-    result = [result stringByAppendingString:URL_DELETE ];
-    result = [result stringByAppendingString: idi];
-    result = [result stringByAppendingString: ida];
+    result = [Utils construct_URL:URL_DELETE,idi,ida,nil];
     NSLog(@"%@",result);
     
     NSData* data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:result]];
@@ -91,19 +86,17 @@ const NSString *RESPONSE_TAG_GET_IMAGE_ID_FROM_ALBUM = @"Get_Image_ID_From_Album
                           options:kNilOptions 
                           error:&error];
     BOOL response = [[json objectForKey:(RESPONSE_TAG_DELETE)] boolValue];
+    NSLog(@"reponse : %d",response);
     return response;
 }
 
 +(UIImage*) get:(int)idImage withAlbum:(int)idAlbum
 {
     NSString *result = @"";
-    NSString *ida = [NSString stringWithFormat:@"/%d",idAlbum];
-    NSString *idi = [NSString stringWithFormat:@"/%d",idImage];
+    NSString *ida = [NSString stringWithFormat:@"%d",idAlbum];
+    NSString *idi = [NSString stringWithFormat:@"%d",idImage];
     
-    
-    result = [result stringByAppendingString:URL_GET ];
-    result = [result stringByAppendingString: idi];
-    result = [result stringByAppendingString: ida];
+    result = [Utils construct_URL:URL_GET,idi,ida,nil];
     NSLog(@"%@",result);
     
     NSData* imageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:result]];
@@ -116,13 +109,10 @@ const NSString *RESPONSE_TAG_GET_IMAGE_ID_FROM_ALBUM = @"Get_Image_ID_From_Album
 +(UIImage*) getThumb:(int)idImage withAlbum:(int)idAlbum
 {
     NSString *result = @"";
-    NSString *ida = [NSString stringWithFormat:@"/%d",idAlbum];
-    NSString *idi = [NSString stringWithFormat:@"/%d",idImage];
+    NSString *ida = [NSString stringWithFormat:@"%d",idAlbum];
+    NSString *idi = [NSString stringWithFormat:@"%d",idImage];
     
-    
-    result = [result stringByAppendingString:URL_GET_THUMB ];
-    result = [result stringByAppendingString: idi];
-    result = [result stringByAppendingString: ida];
+    result = [Utils construct_URL:URL_GET_THUMB,idi,ida,nil];
     NSLog(@"%@",result);
     
     NSData* imageData = [[NSData alloc]initWithContentsOfURL:[NSURL URLWithString:result]];
@@ -135,19 +125,16 @@ const NSString *RESPONSE_TAG_GET_IMAGE_ID_FROM_ALBUM = @"Get_Image_ID_From_Album
 +(void) add:(int)idAlbum name:(NSString*)img_name stream:(NSData*)bytes
 {
     NSString *result = @"";
-    NSString *ida = [NSString stringWithFormat:@"/%d",idAlbum];
-    NSString *na = [NSString stringWithFormat:@"/%@",img_name];    
+    NSString *ida = [NSString stringWithFormat:@"%d",idAlbum];
+    NSString *na = [NSString stringWithFormat:@"%@",img_name];    
     
-    result = [result stringByAppendingString:URL_ADD ];
-    result = [result stringByAppendingString: ida];
-    result = [result stringByAppendingString: na];
-    
+    result = [Utils construct_URL:URL_ADD,ida,na,nil];
     NSLog(@"%@",result);
-
+    
     NSMutableURLRequest *yourRequest = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:result] 
-        cachePolicy:NSURLRequestUseProtocolCachePolicy 
-        timeoutInterval:60.0];
-
+                                                               cachePolicy:NSURLRequestUseProtocolCachePolicy 
+                                                           timeoutInterval:60.0];
+    
     [yourRequest setHTTPMethod:@"POST"];
     
     [yourRequest setValue:@"image/jpg" forHTTPHeaderField:@"Content-Type"];
@@ -155,8 +142,8 @@ const NSString *RESPONSE_TAG_GET_IMAGE_ID_FROM_ALBUM = @"Get_Image_ID_From_Album
     [yourRequest setHTTPBody:bytes];
     
     [[NSURLConnection alloc] initWithRequest:yourRequest 
-        delegate:self
-    startImmediately:YES];
+                                    delegate:self
+                            startImmediately:YES];
 }
 
 
