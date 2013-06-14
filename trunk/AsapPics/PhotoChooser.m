@@ -7,6 +7,8 @@
 //
 
 #import "PhotoChooser.h"
+#import "WebServiceManager.h"
+
 
 @implementation PhotoChooser
 @synthesize label;
@@ -34,11 +36,11 @@
 #pragma mark - View lifecycle
 
 /*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView
-{
-}
-*/
+ // Implement loadView to create a view hierarchy programmatically, without using a nib.
+ - (void)loadView
+ {
+ }
+ */
 
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
@@ -103,7 +105,9 @@
 
 
 - (IBAction)uploadPhoto:(id)sender {
-    NSLog(@"Upload de la photo sous le nom: %@", imageName.text);
+    NSData *imageData = UIImageJPEGRepresentation(imageView.image, 0.7);
+    [WebServiceManager add_image:idAlbum name:imageName.text stream:imageData];
+    [self.navigationController popViewControllerAnimated:true];
 }
 
 - (IBAction)editName:(id)sender {
@@ -132,6 +136,10 @@
     
     imageName.text = [imagePath lastPathComponent];
 }
+-(void) setIdAlbum:(long) album {
+    idAlbum = album;
+}
+
 
 - (void)dealloc {
     [label release];

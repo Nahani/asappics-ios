@@ -8,10 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class SDWebImageRootViewController;
+
 @interface PhotoChooser : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate> {
 	UIImageView * imageView;
 	UIButton * choosePhotoBtn;
 	UIButton * takePhotoBtn;
+    long idAlbum;
 }
 
 @property (nonatomic, retain) IBOutlet UIImageView * imageView;
@@ -24,5 +27,6 @@
 -(IBAction) getPhoto:(id) sender;
 - (IBAction)uploadPhoto:(id)sender;
 - (IBAction)editName:(id)sender;
+-(void) setIdAlbum:(long) album;
 
 @end

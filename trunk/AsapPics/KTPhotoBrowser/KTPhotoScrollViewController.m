@@ -38,7 +38,7 @@ const CGFloat ktkDefaultToolbarHeight = 44;
 @end
 
 @implementation KTPhotoScrollViewController
-static int nbLongTouch = 0;
+
 @synthesize statusBarStyle = statusBarStyle_;
 @synthesize statusbarHidden = statusbarHidden_;
 
@@ -59,10 +59,6 @@ static int nbLongTouch = 0;
 - (id)initWithDataSource:(id <KTPhotoBrowserDataSource>)dataSource andStartWithPhotoAtIndex:(NSUInteger)index 
 {
     if (self = [super init]) {
-        UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] 
-                                              initWithTarget:self action:@selector(handleLongPress:)];
-        lpgr.minimumPressDuration = 2.0; //seconds
-        lpgr.delegate = self;
         startWithIndex_ = index;
         dataSource_ = [dataSource retain];
         
@@ -605,21 +601,6 @@ static int nbLongTouch = 0;
         [self nextPhoto];
     }
     [self startChromeDisplayTimer];
-}
-
--(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
-{ 
-    if(nbLongTouch == 0){
-        nbLongTouch++;
-        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Téléchargement" message:@"Voulez vraiment télécharger la photo ?" delegate:self cancelButtonTitle:@"Non" otherButtonTitles:@"Oui", nil];
-        [alert show];
-    }
-    else if (nbLongTouch == 1){
-        nbLongTouch = 0;
-    }
-    else {
-        nbLongTouch++;
-    }
 }
 
 @end

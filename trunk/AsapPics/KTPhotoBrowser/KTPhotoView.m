@@ -17,7 +17,7 @@
 @end
 
 @implementation KTPhotoView
-
+static int nbLongTouch = 0;
 @synthesize scroller = scroller_;
 @synthesize index = index_;
 
@@ -31,7 +31,13 @@
 {
    self = [super initWithFrame:frame];
    if (self) {
+       UILongPressGestureRecognizer *lpgr = [[UILongPressGestureRecognizer alloc] 
+                                             initWithTarget:self action:@selector(handleLongPress:)];
+       lpgr.minimumPressDuration = 1; //seconds
+       lpgr.delegate = self;
        
+       [self addGestureRecognizer:lpgr];
+       [lpgr release];
        
       [self setDelegate:self];
       [self setMaximumZoomScale:5.0];
@@ -226,6 +232,27 @@
    offset.x = MAX(minOffset.x, MIN(maxOffset.x, offset.x));
    offset.y = MAX(minOffset.y, MIN(maxOffset.y, offset.y));
    self.contentOffset = offset;
+}
+
+-(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
+{ 
+    if(nbLongTouch == 0){
+        nbLongTouch++;
+        UIAlertView * alert = [[UIAlertView alloc] initWithTitle:@"Téléchargement" message:@"Voulez-vous vraiment télécharger la photo ?" delegate:self cancelButtonTitle:@"Non" otherButtonTitles:@"Oui", nil];
+        [alert show];
+    }
+    else if (nbLongTouch == 1){
+        nbLongTouch = 0;
+    }
+    else {
+        nbLongTouch++;
+    }
+}
+
+-(void)alertView:(UIAlertView *)alert clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if(buttonIndex > 0) {
+        UIImageWriteToSavedPhotosAlbum([imageView_ image], self, nil, nil);
+    }
 }
 
 
