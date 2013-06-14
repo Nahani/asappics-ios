@@ -20,12 +20,12 @@ NSString *URL_DELETE = @"http://asap-pics.com/REST/ImageService.svc/delete";
 NSString *URL_ADD = @"http://asap-pics.com/REST/ImageService.svc/add";
 NSString *URL_GET = @"http://asap-pics.com/REST/ImageService.svc/get";
 NSString *URL_GET_THUMB = @"http://asap-pics.com/REST/ImageService.svc/get_thumb";
-NSString *URL_GET_IMAGE_ID_FROM_ALBUM = @"http://asap-pics.com/REST/ImageService.svc/get_image_id_from_album";
+NSString *URL_GET_IMAGES_ID_FROM_ALBUM = @"http://asap-pics.com/REST/ImageService.svc/get_images_id_from_album";
 
 const NSString *RESPONSE_TAG_GET_IMAGE_NAME = @"Get_Image_NameResult";
 const NSString *RESPONSE_TAG_GET_IMAGE_ID = @"Get_Image_IDResult";
 const NSString *RESPONSE_TAG_DELETE = @"DeleteResult";
-const NSString *RESPONSE_TAG_GET_IMAGE_ID_FROM_ALBUM = @"Get_Image_ID_From_AlbumResult";
+const NSString *RESPONSE_TAG_GET_IMAGES_ID_FROM_ALBUM = @"Get_Images_ID_From_AlbumResult";
 
 + (NSString *) get_image_name:(int)idImage id_album:(int)idAlbum
 {
@@ -144,6 +144,27 @@ const NSString *RESPONSE_TAG_GET_IMAGE_ID_FROM_ALBUM = @"Get_Image_ID_From_Album
     [[NSURLConnection alloc] initWithRequest:yourRequest 
                                     delegate:self
                             startImmediately:YES];
+}
+
++(NSArray*) get_images_id_from_album:(int)idAlbum
+{
+    NSString *result = @"";
+    NSString *idi = [NSString stringWithFormat:@"/%d",idAlbum];
+    
+    result = [result stringByAppendingString:URL_GET_IMAGES_ID_FROM_ALBUM ];
+    result = [result stringByAppendingString: idi];
+    NSLog(@"%@",result);
+    
+    NSData* data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:result]];
+    NSError* error;
+    
+    NSDictionary* json = [NSJSONSerialization 
+                          JSONObjectWithData:data
+                          options:kNilOptions 
+                          error:&error];
+    NSArray* retour = [json objectForKey:(RESPONSE_TAG_GET_IMAGES_ID_FROM_ALBUM)];
+    return retour;
+    
 }
 
 
