@@ -15,6 +15,7 @@
 #import "Welcome.h"
 #import "User.h"
 #import "WebServiceManager.h"
+#import "Utils.h"
 
 
 @interface AlbumsViewController ()
@@ -71,8 +72,12 @@
                 return; 
             } else { 
                 NSLog(@"%@",text);
-                [WebServiceManager add_album:[[User sharedInstance] getIdUser] withName:text];
-                [self viewDidLoad];
+                if(![WebServiceManager add_album:[[User sharedInstance] getIdUser] withName:text])
+                {
+                        [Utils print_simple_popup:@"Ajout d'un album" msg:@"Erreur : album déjà existant"];
+                } else {
+                    [self viewDidLoad];
+                }
             } 
         }
     }

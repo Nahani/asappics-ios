@@ -75,8 +75,8 @@ const NSString *RESPONSE_TAG_GET_ALBUMS_ID_FROM_USER = @"Get_AlbumsID_From_UserR
                           JSONObjectWithData:data
                           options:kNilOptions 
                           error:&error];
-    
-    BOOL retour = [json objectForKey:(RESPONSE_TAG_ADD_ALBUM)];
+    result = [json objectForKey:(RESPONSE_TAG_ADD_ALBUM)];
+    BOOL retour = [result boolValue];
     NSLog(@"reponse : %d",retour);
     return retour;
     
