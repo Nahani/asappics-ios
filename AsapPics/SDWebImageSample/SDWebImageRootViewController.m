@@ -36,6 +36,11 @@
     return self;
 }
 
+-(void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self viewDidLoad];
+}
+
 - (void)viewDidLoad 
 {
    [super viewDidLoad];
@@ -52,6 +57,7 @@
 
 -(void)addImage {
     PhotoChooser *monViewController = [welcomeView.storyboard instantiateViewControllerWithIdentifier:@"PhotoChooser"];
+    [monViewController setIdAlbum:idAlbum];
     [welcomeView.navigationController pushViewController:monViewController animated:YES]; 
 }
 
