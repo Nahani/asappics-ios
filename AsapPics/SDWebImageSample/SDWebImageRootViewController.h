@@ -21,7 +21,10 @@
     UIActivityIndicatorView *activityIndicatorView_;
     long idAlbum;
     NSInteger indexImage;
+    UILabel *labelNoPhoto;
 }
+
+@property (nonatomic, retain) UILabel *labelNoPhoto;
 
 - (id)init: (Welcome *) welcome : (long) album;
 

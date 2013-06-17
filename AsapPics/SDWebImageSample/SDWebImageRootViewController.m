@@ -19,6 +19,7 @@
 @end
 
 @implementation SDWebImageRootViewController
+@synthesize labelNoPhoto;
 
 - (void)dealloc 
 {
@@ -57,12 +58,24 @@
 
     images_ = [[SDWebImageDataSource alloc] init:idAlbum];
     [self setDataSource:images_];
+    
+    labelNoPhoto = [[UILabel alloc] initWithFrame:CGRectMake(50.0, 165.0, 320.0, 44.0)];
+    labelNoPhoto.text = @"Aucune photo dans l'album";
+    [[self view] addSubview:labelNoPhoto];
+    
+    if([images_ numberOfPhotos] == 0)
+        labelNoPhoto.hidden = false;
+    else
+        labelNoPhoto.hidden = true;
+    
 }
 
 -(void)addImage {
+    labelNoPhoto.hidden = true;
     PhotoChooser *monViewController = [welcomeView.storyboard instantiateViewControllerWithIdentifier:@"PhotoChooser"];
     [monViewController setIdAlbum:idAlbum];
-    [welcomeView.navigationController pushViewController:monViewController animated:YES]; 
+    [welcomeView.navigationController pushViewController:monViewController animated:YES];
+    
 }
 
 /*
