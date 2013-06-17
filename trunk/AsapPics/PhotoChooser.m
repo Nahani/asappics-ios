@@ -32,7 +32,7 @@
         return activityIndicatorView_;
     }
     
-    activityIndicatorView_ = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    activityIndicatorView_ = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     CGPoint center = [[self view] center];
     [activityIndicatorView_ setCenter:center];
     [activityIndicatorView_ setHidesWhenStopped:YES];
