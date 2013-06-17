@@ -22,9 +22,9 @@
 
 - (void)dealloc 
 {
-   [activityIndicatorView_ release], activityIndicatorView_ = nil;
-   [images_ release], images_ = nil;
-   [super dealloc];
+    [activityIndicatorView_ release], activityIndicatorView_ = nil;
+    [images_ release], images_ = nil;
+    [super dealloc];
 }
 
 - (id)init: (Welcome *) welcome : (long) album {
@@ -40,11 +40,12 @@
     [super viewDidAppear:animated];
     [self viewDidLoad];
     [activityIndicatorView_ setNeedsDisplay];
+    
 }
 
 - (void)viewDidLoad 
 {
-   [super viewDidLoad];
+    [super viewDidLoad];
     self.title = [WebServiceManager get_album_name:idAlbum];
     // Override point for customization after application launch.
     
@@ -52,8 +53,10 @@
     //-------------------------------------------------------------
     //Faire un constructeur ou l'on passe l'id de l'idAlbum
     //Si pas de param alors c'est la vue des album
-   images_ = [[SDWebImageDataSource alloc] init:idAlbum];
-   [self setDataSource:images_];
+    
+
+    images_ = [[SDWebImageDataSource alloc] init:idAlbum];
+    [self setDataSource:images_];
 }
 
 -(void)addImage {
@@ -63,12 +66,12 @@
 }
 
 /*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-*/
+ // Override to allow orientations other than the default portrait orientation.
+ - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
+ // Return YES for supported orientations
+ return (interfaceOrientation == UIInterfaceOrientationPortrait);
+ }
+ */
 
 - (void)didReceiveMemoryWarning 
 {
@@ -86,12 +89,12 @@
 
 - (void)willLoadThumbs 
 {
-   [self showActivityIndicator];
+    [self showActivityIndicator];
 }
 
 - (void)didLoadThumbs 
 {
-   [self hideActivityIndicator];
+    [self hideActivityIndicator];
 }
 
 
@@ -100,33 +103,33 @@
 
 - (UIActivityIndicatorView *)activityIndicator 
 {
-   if (activityIndicatorView_) {
-      return activityIndicatorView_;
-   }
-
-   activityIndicatorView_ = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
-   CGPoint center = [[self view] center];
-   [activityIndicatorView_ setCenter:center];
-   [activityIndicatorView_ setHidesWhenStopped:YES];
-   [activityIndicatorView_ startAnimating];
-   [[self view] addSubview:activityIndicatorView_];
-   
-   return activityIndicatorView_;
+    if (activityIndicatorView_) {
+        return activityIndicatorView_;
+    }
+    
+    activityIndicatorView_ = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    CGPoint center = [[self view] center];
+    [activityIndicatorView_ setCenter:center];
+    [activityIndicatorView_ setHidesWhenStopped:YES];
+    [activityIndicatorView_ startAnimating];
+    [[self view] addSubview:activityIndicatorView_];
+    
+    return activityIndicatorView_;
 }
 
 - (void)showActivityIndicator 
 {
-   [[self activityIndicator] startAnimating];
+    [[self activityIndicator] startAnimating];
 }
 
 - (void)hideActivityIndicator 
 {
-   [[self activityIndicator] stopAnimating];
+    [[self activityIndicator] stopAnimating];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    NSLog(@"Test");
+
     
     return YES;
 }
@@ -139,10 +142,10 @@
 }
 
 - (void)alertView:(UIAlertView *)alert clickedButtonAtIndex:(NSInteger)buttonIndex {
-        if(buttonIndex > 0) {
-            [images_ deleteImageAtIndex:indexImage];
-            [self viewDidLoad];
-        }
+    if(buttonIndex > 0) {
+        [images_ deleteImageAtIndex:indexImage];
+        [self viewDidLoad];
+    }
 }
 
 

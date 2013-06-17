@@ -102,7 +102,6 @@
                 [sharedSingleton setLogin:txtLogin.text];
                 [sharedSingleton setIdUser:[WebServiceManager get_user_id:txtLogin.text]];
                 
-                NSLog(@"%ld/%@",[sharedSingleton getIdUser], [sharedSingleton getLogin]);
                 self.navigationController.navigationBarHidden = false;
                 SDWebImageRootViewController *newController = [[SDWebImageRootViewController alloc] init:self];
                 [[self navigationController] pushViewController:newController animated:YES];

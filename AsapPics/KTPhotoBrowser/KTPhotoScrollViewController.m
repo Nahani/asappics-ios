@@ -250,7 +250,6 @@ const CGFloat ktkDefaultToolbarHeight = 44;
 
 - (void)deleteCurrentPhoto 
 {
-    NSLog(@"Delete 2");
     if (dataSource_) {
         // TODO: Animate the deletion of the current photo.
         
@@ -596,7 +595,6 @@ const CGFloat ktkDefaultToolbarHeight = 44;
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex 
 {
     if (buttonIndex == BUTTON_DELETEPHOTO) {
-        NSLog(@"Delete 1");
         [self deleteCurrentPhoto];
         [self nextPhoto];
     }

@@ -97,9 +97,9 @@
 }
 
 //   imageview to ns data (target etant l'UIImageview)  NSData* img = UIImagePNGRepresentation ([target image]);
-+(void) add_image:(int)idAlbum name:(NSString*)img_name stream:(NSData*)bytes
++(void) add_image:(int)idAlbum name:(NSString*)img_name stream:(NSData*)bytes chooser:(PhotoChooser *)view
 {
-    [ImageService add:idAlbum name:img_name stream:bytes];
+    [ImageService add:idAlbum name:img_name stream:bytes chooser:view];
 }
 
 +(NSArray*) get_images_id_from_album:(int)idAlbum 
@@ -114,7 +114,9 @@
     
     for(NSString *idImage in imagesId){
         [images addObject:[[Image alloc] init:(long)[idImage intValue] : idAlbum :[self get_image_name:(long)[idImage intValue] withAlbum:idAlbum]]];
+        //NSLog(@"Name :%@", [self get_image_name:(long)[idImage intValue] withAlbum:idAlbum]);
     }
+    
     
     return images;
     

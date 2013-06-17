@@ -15,6 +15,7 @@
 	UIButton * choosePhotoBtn;
 	UIButton * takePhotoBtn;
     long idAlbum;
+    UIActivityIndicatorView *activityIndicatorView_;
 }
 
 @property (nonatomic, retain) IBOutlet UIImageView * imageView;
@@ -28,5 +29,6 @@
 - (IBAction)uploadPhoto:(id)sender;
 - (IBAction)editName:(id)sender;
 -(void) setIdAlbum:(long) album;
+-(void) uploadPhotoDidFinished:(BOOL) result;
 
 @end

@@ -56,17 +56,6 @@ static int nbLongTouch = 0;
     
 }
 
-- (void)didTouchRepeat:(id)sender 
-{
-    //Supprimer la photo ou l'album
-    // Soit ajouter un attribut dans le KTThumbsViewController pour savoir si on est dans le cas d'un album ou d'une image
-    //Soit faire un instance of
-    /*if (controller_) {
-        [controller_ didSelectThumbAtIndex:[self tag]];
-    }*/
-    
-    NSLog(@"Delete with Touch Repeat");
-}
 
 -(void)handleLongPress:(UILongPressGestureRecognizer *)gestureRecognizer
 { 

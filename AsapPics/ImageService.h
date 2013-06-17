@@ -1,6 +1,7 @@
 
 
 #import <Foundation/Foundation.h>
+#import "PhotoChooser.h"
 
 @interface ImageService : NSObject
 
@@ -16,7 +17,7 @@
 
 +(NSArray*) get_images_id_from_album:(int)idAlbum;
 
-+(void) add:(int)idAlbum name:(NSString*)img_name stream:(NSData*)bytes;
++(void) add:(int)idAlbum name:(NSString*)img_name stream:(NSData*)bytes chooser:(PhotoChooser *)view;
 
 +(NSData *)makeMultipartDataWithBoundary:(NSString *) boundary 
                               parameters:(NSDictionary *)parameters

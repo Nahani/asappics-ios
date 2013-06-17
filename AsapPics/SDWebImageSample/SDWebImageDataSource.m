@@ -49,14 +49,12 @@ NSString *URL_IMAGE = @"http://asap-pics.com/REST/ImageService.svc/get";
 - (void)imageAtIndex:(NSInteger)index photoView:(KTPhotoView *)photoView {
     Image *image = [images objectAtIndex:index];
     NSString *url = [Utils construct_URL:URL_IMAGE,[[NSNumber numberWithInt:[image getIdImage]] stringValue],[[NSNumber numberWithInt:[image getIdAlbum]] stringValue], nil];
-    NSLog(@"url thumb album: %@", url);
     [photoView setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"photoDefault.png"]];
 }
 
 - (void)thumbImageAtIndex:(NSInteger)index thumbView:(KTThumbView *)thumbView {
     Image *image = [images objectAtIndex:index];
     NSString *url = [Utils construct_URL:URL_THUMB,[[NSNumber numberWithInt:[image getIdImage]] stringValue],[[NSNumber numberWithInt:[image getIdAlbum]] stringValue], nil];
-    NSLog(@"url thumb album: %@", url);
     [thumbView setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"photoDefault.png"]];
 
 }
