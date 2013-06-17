@@ -41,7 +41,6 @@
     [super viewDidAppear:animated];
     [self viewDidLoad];
     [activityIndicatorView_ setNeedsDisplay];
-    
 }
 
 - (void)viewDidLoad 
@@ -64,17 +63,19 @@
     [[self view] addSubview:labelNoPhoto];
     
     if([images_ numberOfPhotos] == 0)
-        labelNoPhoto.hidden = false;
+        [labelNoPhoto setHidden:FALSE];
     else
-        labelNoPhoto.hidden = true;
-    
+        [labelNoPhoto setHidden:TRUE];
+    [activityIndicatorView_ setNeedsDisplay];
+
 }
 
 -(void)addImage {
-    labelNoPhoto.hidden = true;
+    [labelNoPhoto setHidden:TRUE];
     PhotoChooser *monViewController = [welcomeView.storyboard instantiateViewControllerWithIdentifier:@"PhotoChooser"];
     [monViewController setIdAlbum:idAlbum];
     [welcomeView.navigationController pushViewController:monViewController animated:YES];
+    [activityIndicatorView_ setNeedsDisplay];
     
 }
 
