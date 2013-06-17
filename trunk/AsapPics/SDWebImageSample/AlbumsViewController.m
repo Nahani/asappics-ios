@@ -64,8 +64,6 @@
 }
 
 -(void)addAlbum {
-    NSLog(@"AJouter album");
-    
     
     [alertAdd show];
 }
@@ -78,10 +76,10 @@
             if(text == nil || [text length] == 0) { 
                 return; 
             } else { 
-                NSLog(@"%@",text);
                 if(![WebServiceManager add_album:[[User sharedInstance] getIdUser] withName:text])
                 {
-                        [Utils print_simple_popup:@"Ajout d'un album" msg:@"Erreur : album déjà existant"];
+                    [Utils print_simple_popup:@"Ajout d'un album" msg:@"Erreur : album déjà existant"];
+                    [textField setText:@""];
                 } else {
                     [self viewDidLoad];
                 }
@@ -160,7 +158,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    NSLog(@"Test");
     
     return YES;
 }

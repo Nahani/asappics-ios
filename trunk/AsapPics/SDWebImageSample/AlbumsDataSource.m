@@ -75,7 +75,6 @@ NSString *URL = @"http://asap-pics.com/REST/ImageService.svc/get_thumb";
 - (void)thumbImageAtIndex:(NSInteger)index thumbView:(KTThumbView *)thumbView {
     Album *album = [albums objectAtIndex:index];
     NSString *url = [Utils construct_URL:URL,[[NSNumber numberWithInt:[album getImageRandom]] stringValue],[[NSNumber numberWithInt:[album getIdAlbum]] stringValue], nil];
-    NSLog(@"url thumb album: %@", url);
     [thumbView setImageWithURL:[NSURL URLWithString:url] placeholderImage:[UIImage imageNamed:@"photoDefault.png"]];
 }
 

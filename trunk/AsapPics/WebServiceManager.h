@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "PhotoChooser.h"
 
 @interface WebServiceManager : NSObject
 
@@ -44,7 +45,7 @@
 
 +(BOOL) check_password:(NSString*)login withPass:(NSString *)pwd;
 
-+(void) add_image:(int)idAlbum name:(NSString*)img_name stream:(NSData*)bytes;
++(void) add_image:(int)idAlbum name:(NSString*)img_name stream:(NSData*)bytes chooser:(PhotoChooser *)view;
 
 +(NSArray *) get_Images_from_album:(int)idAlbum;
 

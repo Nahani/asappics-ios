@@ -30,7 +30,6 @@ const NSString* RESPONSE_TAG_GET_USER_LEVEL =@"Get_User_LevelResult";
     NSString* retour;
     
     result = [Utils construct_URL:URL_GET_USER_ID,idi,nil];
-    NSLog(@"%@",result);
     
     NSData* data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:result]];
 	// Do any additional setup after loading the view, typically from a nib.
@@ -42,7 +41,6 @@ const NSString* RESPONSE_TAG_GET_USER_LEVEL =@"Get_User_LevelResult";
     
     retour = [json objectForKey:(RESPONSE_GET_USER_ID)];
     int final = [retour intValue];
-    NSLog(@"reponse : %d",final);
     return final;
 }
 
@@ -53,7 +51,6 @@ const NSString* RESPONSE_TAG_GET_USER_LEVEL =@"Get_User_LevelResult";
     NSString* retour;
     
     result = [Utils construct_URL:URL_GET_USER_LEVEL,idi,nil];
-    NSLog(@"%@",result);
     
     NSData* data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:result]];
 	// Do any additional setup after loading the view, typically from a nib.
@@ -65,7 +62,6 @@ const NSString* RESPONSE_TAG_GET_USER_LEVEL =@"Get_User_LevelResult";
     
     retour = [json objectForKey:(RESPONSE_TAG_GET_USER_LEVEL)];
     BOOL final = [retour boolValue];
-    NSLog(@"reponse : %d",final);
     return final;
 }
 
@@ -77,7 +73,6 @@ const NSString* RESPONSE_TAG_GET_USER_LEVEL =@"Get_User_LevelResult";
     NSString* retour;
     
     result = [Utils construct_URL:URL_CHECK_PASSWORD,idi,pass,nil];
-    NSLog(@"%@",result);
     
     NSData* data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:result]];
 	// Do any additional setup after loading the view, typically from a nib.
@@ -89,7 +84,6 @@ const NSString* RESPONSE_TAG_GET_USER_LEVEL =@"Get_User_LevelResult";
     
     retour = [json objectForKey:(RESPONSE_TAG_CHECK_PASSWORD)];
     BOOL final = [retour boolValue];
-    NSLog(@"reponse : %d",final);
     return final;
 }
 
@@ -104,7 +98,6 @@ const NSString* RESPONSE_TAG_GET_USER_LEVEL =@"Get_User_LevelResult";
     NSString* retour;
     
     result = [Utils construct_URL:URL_ADD_USER,first_name,last_name,idi,email,pass,nil];
-    NSLog(@"%@",result);
     
     NSData* data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:result]];
 	// Do any additional setup after loading the view, typically from a nib.
@@ -116,7 +109,6 @@ const NSString* RESPONSE_TAG_GET_USER_LEVEL =@"Get_User_LevelResult";
     
     retour = [json objectForKey:(RESPONSE_TAG_ADD_USER)];
     BOOL final = [retour boolValue];
-    NSLog(@"reponse : %d",final);
     return final;
     
 }
@@ -128,7 +120,6 @@ const NSString* RESPONSE_TAG_GET_USER_LEVEL =@"Get_User_LevelResult";
     NSString* retour;
     
     result = [Utils construct_URL:URL_DELETE_USER,idi,nil];
-    NSLog(@"%@",result);
     
     NSData* data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:result]];
 	// Do any additional setup after loading the view, typically from a nib.
@@ -140,7 +131,6 @@ const NSString* RESPONSE_TAG_GET_USER_LEVEL =@"Get_User_LevelResult";
     
     retour = [json objectForKey:(RESPONSE_TAG_DELETE_USER)];
     BOOL final = [retour boolValue];
-    NSLog(@"reponse : %d",final);
     return final;
 }
 

@@ -22,7 +22,6 @@ const NSString *RESPONSE_TAG_GET_ALBUMS_ID_FROM_USER = @"Get_AlbumsID_From_UserR
     NSString *idi = [NSString stringWithFormat:@"%d",idImage];
     
     result = [Utils construct_URL:URL_GET_ALBUM_NAME,idi,nil];
-    NSLog(@"%@",result);
     
     NSData* data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:result]];
 	// Do any additional setup after loading the view, typically from a nib.
@@ -31,7 +30,6 @@ const NSString *RESPONSE_TAG_GET_ALBUMS_ID_FROM_USER = @"Get_AlbumsID_From_UserR
                           JSONObjectWithData:data
                           options:kNilOptions 
                           error:&error];
-    NSLog(@"reponse : %@",[json objectForKey:(RESPONSE_TAG_GET_ALBUM_NAME)]);
     return [json objectForKey:(RESPONSE_TAG_GET_ALBUM_NAME)];
 }
 
@@ -42,8 +40,7 @@ const NSString *RESPONSE_TAG_GET_ALBUMS_ID_FROM_USER = @"Get_AlbumsID_From_UserR
     NSString *retour;
     
     result = [Utils construct_URL:URL_GET_ALBUM_ID,name,idi,nil];
-    NSLog(@"%@",result);
-    
+       
     NSData* data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:result]];
 	// Do any additional setup after loading the view, typically from a nib.
     NSError* error;
@@ -54,7 +51,6 @@ const NSString *RESPONSE_TAG_GET_ALBUMS_ID_FROM_USER = @"Get_AlbumsID_From_UserR
     
     retour = [json objectForKey:(RESPONSE_TAG_GET_ALBUM_ID)];
     int final = [retour intValue];
-    NSLog(@"reponse : %d",final);
     return final;
 }
 
@@ -66,7 +62,6 @@ const NSString *RESPONSE_TAG_GET_ALBUMS_ID_FROM_USER = @"Get_AlbumsID_From_UserR
     
     result = [Utils construct_URL:URL_ADD_ALBUM,name,idi,nil];
     
-    NSLog(@"%@",result);
     
     NSData* data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:result]];
 	// Do any additional setup after loading the view, typically from a nib.
@@ -77,7 +72,6 @@ const NSString *RESPONSE_TAG_GET_ALBUMS_ID_FROM_USER = @"Get_AlbumsID_From_UserR
                           error:&error];
     result = [json objectForKey:(RESPONSE_TAG_ADD_ALBUM)];
     BOOL retour = [result boolValue];
-    NSLog(@"reponse : %d",retour);
     return retour;
     
 }
@@ -92,7 +86,6 @@ const NSString *RESPONSE_TAG_GET_ALBUMS_ID_FROM_USER = @"Get_AlbumsID_From_UserR
     result = [result stringByAppendingString: name];
     result = [result stringByAppendingString: idi];
     result = [Utils construct_URL:URL_GET_DELETE_ALBUM,name,idi,nil];
-    NSLog(@"%@",result);
     
     NSData* data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:result]];
 	// Do any additional setup after loading the view, typically from a nib.
@@ -103,7 +96,6 @@ const NSString *RESPONSE_TAG_GET_ALBUMS_ID_FROM_USER = @"Get_AlbumsID_From_UserR
                           error:&error];
     
     BOOL retour = [json objectForKey:(RESPONSE_TAG_DELETE_ALBUM)];
-    NSLog(@"reponse : %d",retour);
     return retour;
     
 }
@@ -115,7 +107,6 @@ const NSString *RESPONSE_TAG_GET_ALBUMS_ID_FROM_USER = @"Get_AlbumsID_From_UserR
     
     result = [Utils construct_URL:URL_GET_ALBUM_ID_FROM_USER,idi,nil];
     
-    NSLog(@"%@",result);
     
     NSData* data = [[NSData alloc] initWithContentsOfURL:[NSURL URLWithString:result]];
     NSError* error;
@@ -125,7 +116,6 @@ const NSString *RESPONSE_TAG_GET_ALBUMS_ID_FROM_USER = @"Get_AlbumsID_From_UserR
                           options:kNilOptions 
                           error:&error];
     NSArray* retour = [json objectForKey:(RESPONSE_TAG_GET_ALBUMS_ID_FROM_USER)];
-    NSLog(@"reponse : %@",retour);
     return retour;
     
 }

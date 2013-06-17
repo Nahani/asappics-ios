@@ -131,7 +131,6 @@
 }
 
 - (void)didSelectThumbAtIndex:(NSUInteger)index {
-    NSLog(@"Passe ici !");
     //Cas d'une image :
     if(!isAlbum) {
    KTPhotoScrollViewController *newController = [[KTPhotoScrollViewController alloc] 
@@ -145,7 +144,6 @@
     //Passer à la vue de l'album
     //Appeler la méthode datasource_ getAlbumAtIndex qui retoure soit un id soit qui fait lui même le changement de vue
     else {
-        NSLog(@"Passe ici !");
         //Récupérer l'id de l'abum correspondant à l'album de l'index
         //Passer en arguments l'id de l'album
         
