@@ -9,6 +9,7 @@
 #import "PhotoChooser.h"
 #import "WebServiceManager.h"
 #import "SDWebImageRootViewController.h"
+#import "Utils.h"
 
 @implementation PhotoChooser
 @synthesize label;
@@ -142,7 +143,7 @@
     if(result)
         [self.navigationController popViewControllerAnimated:true];
     else
-        NSLog(@"POPUP");
+        [Utils print_simple_popup:@"Ajout d'image" msg:@"Erreur : le nom de photo choisi existe déjà dans l'album cible. Veuillez la renommer au préalable"];
     
     
     [self hideActivityIndicator];
