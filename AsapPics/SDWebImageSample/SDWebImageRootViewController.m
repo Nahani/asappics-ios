@@ -39,6 +39,7 @@
 -(void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self viewDidLoad];
+    [activityIndicatorView_ setNeedsDisplay];
 }
 
 - (void)viewDidLoad 
