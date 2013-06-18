@@ -95,7 +95,7 @@ const NSString *RESPONSE_TAG_GET_ALBUMS_ID_FROM_USER = @"Get_AlbumsID_From_UserR
                           options:kNilOptions 
                           error:&error];
     
-    BOOL retour = [json objectForKey:(RESPONSE_TAG_DELETE_ALBUM)];
+    BOOL retour = [[json objectForKey:(RESPONSE_TAG_DELETE_ALBUM)] boolValue];
     return retour;
     
 }

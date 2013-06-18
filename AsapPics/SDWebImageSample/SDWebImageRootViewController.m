@@ -61,7 +61,7 @@
     labelNoPhoto = [[UILabel alloc] initWithFrame:CGRectMake(50.0, 165.0, 320.0, 44.0)];
     labelNoPhoto.text = @"Aucune photo dans l'album";
     [[self view] addSubview:labelNoPhoto];
-    
+    NSLog(@"Nombre de photo(s): %d", [images_ numberOfPhotos]);
     if([images_ numberOfPhotos] == 0)
         [labelNoPhoto setHidden:FALSE];
     else
