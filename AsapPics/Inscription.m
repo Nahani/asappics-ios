@@ -97,15 +97,9 @@
                 [Utils print_simple_popup:@"Inscription" msg:@"L'inscription a échouée : login déjà existant"];
             }
             else {
-                User* sharedSingleton = [User sharedInstance];
-                
-                [sharedSingleton setLogin:txtLogin.text];
-                [sharedSingleton setIdUser:[WebServiceManager get_user_id:txtLogin.text]];
-                
-                self.navigationController.navigationBarHidden = false;
-                SDWebImageRootViewController *newController = [[SDWebImageRootViewController alloc] init:self];
-                [[self navigationController] pushViewController:newController animated:YES];
-                [newController release];
+                [Utils print_simple_popup:@"Inscription" msg:@"Inscription réussi ! Vous pouvez désormais vous connecter."];
+                Welcome *monViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"Welcome"];
+                [self.navigationController pushViewController:monViewController animated:YES]; 
             }
         }
     }
