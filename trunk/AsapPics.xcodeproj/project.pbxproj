@@ -45,6 +45,7 @@
 		6FA07DD51767426E002F2AA3 /* UIImageView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA07DC81767426E002F2AA3 /* UIImageView+WebCache.m */; };
 		6FA07DD61767426E002F2AA3 /* SDWebImageDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA07DCA1767426E002F2AA3 /* SDWebImageDataSource.m */; };
 		6FA07DD71767426E002F2AA3 /* SDWebImageRootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FA07DCC1767426E002F2AA3 /* SDWebImageRootViewController.m */; };
+		6FAD95B51772FCE6004432B0 /* ic_launcher4.png in Resources */ = {isa = PBXBuildFile; fileRef = 6FAD95B41772FCE6004432B0 /* ic_launcher4.png */; };
 		6FCEA6E9176A0B4300912D63 /* Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCEA6E8176A0B4300912D63 /* Image.m */; };
 		6FCEA6ED176A104900912D63 /* AlbumsDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCEA6EC176A104800912D63 /* AlbumsDataSource.m */; };
 		6FCEA6F0176A175B00912D63 /* Album.m in Sources */ = {isa = PBXBuildFile; fileRef = 6FCEA6EF176A175B00912D63 /* Album.m */; };
@@ -122,6 +123,7 @@
 		6FA07DCA1767426E002F2AA3 /* SDWebImageDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageDataSource.m; sourceTree = "<group>"; };
 		6FA07DCB1767426E002F2AA3 /* SDWebImageRootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWebImageRootViewController.h; sourceTree = "<group>"; };
 		6FA07DCC1767426E002F2AA3 /* SDWebImageRootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWebImageRootViewController.m; sourceTree = "<group>"; };
+		6FAD95B41772FCE6004432B0 /* ic_launcher4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_launcher4.png; sourceTree = "<group>"; };
 		6FCEA6E7176A0B4300912D63 /* Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Image.h; sourceTree = "<group>"; };
 		6FCEA6E8176A0B4300912D63 /* Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Image.m; sourceTree = "<group>"; };
 		6FCEA6EB176A104800912D63 /* AlbumsDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumsDataSource.h; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 		6F1B04FC1768AD32007A9C6D /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				6FAD95B41772FCE6004432B0 /* ic_launcher4.png */,
 				6F1B04F01768AD20007A9C6D /* background.jpg */,
 			);
 			name = Resources;
@@ -382,6 +385,7 @@
 				6FA07DD01767426E002F2AA3 /* LICENSE in Resources */,
 				6FA07DD11767426E002F2AA3 /* README.md in Resources */,
 				6F1B04F71768AD20007A9C6D /* background.jpg in Resources */,
+				6FAD95B51772FCE6004432B0 /* ic_launcher4.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
